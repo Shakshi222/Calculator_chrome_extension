@@ -1,0 +1,253 @@
+
+
+body,
+html {
+    margin: 0;
+    padding: 1px;
+    background: #fff;
+}
+
+#calculator {
+    width: 376px;
+    height: 519px;
+    margin: auto;
+    border: 1px solid #161615;
+    background: #e87911;
+    box-shadow: 0px 0px 40px #121111;
+    border: 2px solid #6f6fc1;
+    border-top-left-radius: 1em;
+    border-top-right-radius: 1em;
+    border-bottom-left-radius: 1em;
+    border-bottom-right-radius: 1em;
+}
+
+.logo {
+    margin-top: 10px;
+    margin-left: 15px;
+    margin-bottom: 5px;
+    float: left;
+    font-style: bold;
+    font-weight: 700;
+    font-family: "Poppins", sans-serif;;
+    font-size: 1.4em;
+    color: #acb4c1;
+    
+}
+
+.v {
+    font-size: 0.6em;
+    margin-top: 20px;
+    margin-right: 18px;
+    color: #acb4c1;
+    float: right;
+    font-family: "Poppins", sans-serif;
+}
+
+.raad {
+    font-size: 0.7em;
+    margin-top: 3px;
+    margin-right: 22px;
+    color: #acb4c1;
+    float: right;
+    font-family: "Poppins", sans-serif;
+}
+
+.form-control {
+    text-align: center;
+}
+
+#display-box {
+    position: relative;
+    padding-right: 7px;
+    padding-top: 22px;
+    padding-bottom: 0px;
+    width: 350px;
+    height: 53px;
+    margin-top: 5px;
+    margin-bottom: 9px;
+    font: 30px bold;
+    font-family: "Pixel";
+    text-align: right;
+    border-radius: 5px;
+    background: #b6d1c2;
+    box-shadow: 0px 0px 40px #2b4753;
+    display: inline-block;
+}
+
+.notification {
+    position: absolute;
+    z-index: 1;
+    left: 65px;
+    top: 58px;
+    font-size: 12px;
+    font-family: "Pixel";
+}
+
+.calc-rad {
+    position: absolute;
+    padding: 2px;
+    padding-left: 5px;
+    bottom: 2px;
+    font-size: 14px;
+    line-height: 14px;
+    outline-width: 5px;
+}
+
+.calc-hold{
+    position: absolute;
+    z-index: 1;
+    right: 8px;
+    top: 58px;
+    font-size: 12px;
+    font-family: "Pixel";
+}
+
+.calc-top {
+    margin: 7px;
+    display: inline-block;
+}
+
+.calc-left {
+    position: relative;
+}
+
+.sign {
+    position: absolute;
+    left: 39px;
+    bottom: 4px;
+    font-size: 8px;
+    font-family: inherit;
+    color: inherit;
+}
+
+.calc-down {
+    margin: 11px;
+    display: inline-block;
+}
+
+
+
+.trigo-keys {
+    width: 40px;
+    height: 27px;
+    font-size: 1em;
+    color: #fff;
+    margin: 3px;
+    cursor: pointer;
+    background: #2b4753;
+    border: 1px solid #1a2f38;
+    border-radius: 5px;
+    display: inline-block;
+    font-family: "Poppins", sans-serif;
+    vertical-align: middle;
+}
+
+.calc-second {
+    background-color: #222;
+    width: 40px;
+    height: 27px;
+    font-size: 1em;
+    color: #d86672;
+    margin: 3px;
+    cursor: pointer;
+    background: #2b4753;
+    border: 1px solid #1a2f38;
+    border-radius: 5px;
+    display: inline-block;
+    font-family: "Poppins", sans-serif;
+    vertical-align: middle;
+}
+
+.trigo-keys:hover {
+    background: #345361;
+    border: 1px solid #1a2f38;
+    border-radius: 5px;
+}
+
+.trigo-keys:active {
+    font-size: 1em;
+    color: #fff;
+    background: #2b4753;
+    border: 1px solid #000;
+    border-radius: 5px;
+}
+
+.keys {
+    padding: 0px;
+    color: #fff;
+    font-family: "Poppins", sans-serif;
+    font-size: 2em;
+    cursor: pointer;
+    margin: 1px;
+    width: 62px;
+    height: 50px;
+    border: 2px solid #34488a;
+    border-top-left-radius: .6em;
+    border-top-right-radius: .6em;
+    border-bottom-left-radius: 1em;
+    border-bottom-right-radius: 1em;
+    background: #3ea2f9;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.keys:hover {
+    color: #fff;
+    background: #4b5965;
+}
+
+.keys:active {
+    color: #fff;
+    background: #030304;
+    border: 2px solid #101b3d;
+}
+
+.keys2 {
+    background: #497197;
+}
+
+.keys2:hover {
+    background: #0a131b;
+}
+
+.keys2:active {
+    background: #528cc3;
+    border: 2px solid #151822;
+}
+
+.del-ac {
+    background: #e44053;
+    width: 134px;
+}
+
+.del-ac:hover {
+    background: #c9a1a6;
+}
+
+.del-ac:active {
+    color: #fff;
+    background: #571119;
+    border: 2px solid #2c3a66;
+}
+
+.equal {
+    width: 134px;
+}
+
+.calc-buttons {
+    display: none;
+}
+
+.calc-blank {
+    position: absolute;
+    z-index: -1;
+    opacity: 0;
+    width: 0px;
+    height: 0px;
+    padding: 0px;
+    margin: 0px;
+}
+
+.calc-active{
+    box-shadow: 0px 0px 3px #58738a;
+}
