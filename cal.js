@@ -11,15 +11,15 @@
         secondKeySet = [].slice.call(Calc.querySelector('.calc-left').children, 12, 20),
         hiddenCopy = Calc.querySelector('textarea'),
         pressedKey,
-        frozenKey, // active calculation keys
-        secondActive = false, // 2nd key active?
+        frozenKey, 
+        secondActive = false, 
         bracketKey,
-        brackets = 0, // count of current open brackets
-        calculator = [], // instances of Calculator
-        deg = false, // Deg mode or Rad
+        brackets = 0, 
+        calculator = [], 
+        deg = false,
         memory = 0,
         resBuffer = '0',
-        bigger = true, // calc size
+        bigger = true, 
         ln = 0,
         buffStr = [],
         sav = ['secondActive', 'deg', 'memory', 'buffStr', 'resBuffer'],
@@ -31,7 +31,7 @@
                 'sinh<sup>-1</sup>', 'cosh<sup>-1</sup>', 'tanh<sup>-1</sup>', '2<sup>x</sup>'
             ]
         ],
-        Calculator = function () { // for every '(' a new instance
+        Calculator = function () { 
             this.stack = [],
                 this.num = 0,
                 this.res = 0,
@@ -62,20 +62,20 @@
         if (key !== '=') {
             this.buff[1] = key;
         } else if (this.buff[0] === false) {
-            this.buff[0] = val; // feed buffer for repeating '='
+            this.buff[0] = val; 
         }
         if (key === '=' && !this.stack[0] && this.curr && this.buff[1]) { // repeating '='
             return (this.buff[1] === 'yx' ? Math.pow(val, this.buff[0]) : this.buff[1] === 'x√y' ?
                 Math.pow(val, 1 / this.buff[0]) : [1] === 'EE' ? val * Math.pow(10, this.buff[0]) :
                     eval('(' + val + ')' + this.buff[1] + '(' + this.buff[0] + ')')) + '';
         }
-        if (!this.stack[0] && key !== '=') { // first filling
+        if (!this.stack[0] && key !== '=') {
             this.buff[0] = false;
             this.stack[this.num++] = [val, key];
             this.curr = true;
             return val + '';
         }
-        if (this.stack[0] && this.curr && this.curr !== 'funk' && key !== '=') { // retyping / correcting operant
+        if (this.stack[0] && this.curr && this.curr !== 'funk' && key !== '=') {
             this.stack[this.num - 1] = [val, key];
             return val + ''
         }
@@ -87,7 +87,7 @@
                 this.stack[this.num - 1][1] === 'yx' ? Math.pow(this.stack[this.num - 1][0], val) :
                     this.stack[this.num - 1][1] === 'x√y' ? Math.pow(this.stack[this.num - 1][0], 1 / val) :
                         this.stack[this.num - 1][1] === 'EE' ? this.stack[this.num - 1][0] * Math.pow(10, val) :
-                            eval('(' + this.stack[this.num - 1][0] + ')' + this.stack[this.num - 1][1] + '(' + val + ')'),
+                            
                 key
             ];
         }
@@ -116,9 +116,7 @@
     };
 
 
-    // ---------- INIT... ---------- //
-
-    // collect all keys...
+ 
     for (var k = 2; k--;) {
         for (var l = Calc.children[k + 1], m = l.children, n = m.length; n--;) {
             keyBoard[l.children[n].textContent.replace(/\s*/g, '')] = l.children[n];
@@ -134,7 +132,7 @@
 
     calculator[0] = new Calculator();
 
-    // recover after reload or crash...
+   
     (function (localStorage) {
         if (!localStorage || !localStorage['resBuffer']) {
             return; // for the very first run or after fatal crash
@@ -169,7 +167,7 @@
         }
     })(window.localStorage);
 
-    // ---------------- event listeners keys ---------------- //
+   
 
     document.addEventListener('keypress', function (e) {
         var key = e.which,
@@ -213,7 +211,7 @@
         if (e.which === 8 && calculator[brackets].curr !== true &&
             calculator[brackets].curr !== 'funk' && str !== '0') {
             e.preventDefault();
-            while (buffStr.length && !keyBoard[buffStr[buffStr.length - 1]]) { // bull shit key(s)
+            while (buffStr.length && !keyBoard[buffStr[buffStr.length - 1]]) { 
                 buffStr.pop();
             }
             if (buffStr[buffStr.length - 1] === '+/–') {
@@ -239,7 +237,7 @@
         if (e.which === 46 || (e.keyCode == 8 && e.shiftKey)) {
             keyDown(false, keyBoard['AC']);
             doKey(keyBoard['AC'].textContent, true);
-            buffStr.pop(); // Raad added delete function from Keyborad
+            buffStr.pop(); 
             doKey('C', true);
             render('0');
         }
@@ -297,7 +295,7 @@
         }, 50);
     };
 
-    // ---------------- event listeners mouse --------------- //
+   
 
     Calc.onmousedown = function (e) {
         keyDown(e);
@@ -343,16 +341,16 @@
         toggleOptions(true);
     }, false);
 
-    // ------------------- event related functions ------------------ //
+   
 
-    function keyDown(e, obj) { // works for mouse and key
+    function keyDown(e, obj) { 
         var event = e || window.event,
             target = obj || getTargetKey(event.target),
             keyText = target.textContent.replace(/\s*/g, ''),
             key = keyBoard[keyText];
 
         if (key) {
-            keyUp(); // recover key in case of a javaScript Error
+            keyUp(); 
             pressedKey = key;
             key.className = key.className + ' calc-press';
         }
@@ -464,15 +462,7 @@
                 replace(/#/g, ln === 2 ? '.' : ',');
         }
         display.firstChild.data = tmp;
-        // for common use: get values of pixels dynamically to stay free from design (...but outside this function)
-
-        // displayStyle.fontSize = '30px';
-
-        // while (display.offsetWidth > display.parentNode.offsetWidth - (bigger ? 20 : 20)) {
-        //     displayStyle.fontSize = (fontSize--) + 'px';
-        // }
-
-        // fixing the screen box size issue 5/21/2019
+        
         var screenDigitSize = document.getElementById("box").innerHTML.length;
         if (screenDigitSize > 18) {
             displayStyle.fontSize = '23px';
@@ -484,11 +474,11 @@
     }
 
     function doKey(text, alt) {
-        var key = keyBoard[text]; // text = key.textContent.replace(/\s*/g, '');
+        var key = keyBoard[text]; 
 
         if (text === '2nd') {
             secondActive = secondActive ? null : true;
-            key.className = secondActive ? 'calc-press calc-second' : 'trigo-keys'; // !!!
+            key.className = secondActive ? 'calc-press calc-second' : 'trigo-keys'; 
             for (var n = secondKeySet.length; n--;) {
                 secondKeySet[n].children[0].innerHTML = secondLayer[secondActive ? 1 : 0][n];
             }
@@ -684,8 +674,7 @@
         }
     }
 
-    // ---------------- add-on (sign (Deg/rad) changer) ---------------- //
-
+    
     var button = document.getElementById("rad");
     var sign = document.getElementsByClassName("sign")[0];
 
